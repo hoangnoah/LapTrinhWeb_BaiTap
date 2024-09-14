@@ -8,8 +8,10 @@ public interface IUserDao {
 
 	List<User> findAll();
 
-	User findByEmail(String email);
+	User findByUserName(String username);
 
 	void insert(User user);
-
+	boolean checkExistEmail(String email);
+	boolean checkExistUsername(String username);
+	boolean checkExistPhone(String phone);
 }

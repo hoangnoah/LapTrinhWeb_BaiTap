@@ -23,10 +23,10 @@ bootstrap.min.css"
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-5">
-				<form action="/LapTrinhWeb/register" method="post">
+				<form action="/LapTrinhWeb/login" method="post">
 					<div class="form-group">
-						<label for="email">Email:</label> <input type="text" id="email"
-							name="email" class="form-control" />
+						<label for="username">Tên người dùng:</label> <input type="text" id="username"
+							name="username" class="form-control" />
 					</div>
 					<div class="form-group">
 						<label for="password">Mật khẩu: </label> <input type="password"

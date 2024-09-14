@@ -26,8 +26,9 @@ public class UserDao extends DBConnectMySQL implements IUserDao {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				users.add(new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"), rs.getString("fullname"),
-						rs.getString("images"), rs.getString("password")));
+				users.add(new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"),
+						rs.getString("fullname"), rs.getString("images"), rs.getString("password"),
+						rs.getString("phone"), rs.getInt("roleid"), rs.getDate("createdate")));
 			}
 			return users;
 		} catch (Exception e) {
@@ -37,17 +38,26 @@ public class UserDao extends DBConnectMySQL implements IUserDao {
 	}
 
 	@Override
-	public User findByEmail(String email) {
-		String sql = "SELECT * FROM users WHERE email=?";
+	public User findByUserName(String username) {
+		String sql = "SELECT * FROM users WHERE username=?";
 		try {
 			conn = super.getDatabaseConnection();
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, email);
+			ps.setString(1, username);
 			rs = ps.executeQuery();
-			
+
 			if (rs.next()) {
-				return new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"), rs.getString("fullname"),
-						rs.getString("images"), rs.getString("password"));
+				User user = new User();
+				user.setId(rs.getInt("id"));
+				user.setEmail(rs.getString("email"));
+				user.setUsername(rs.getString("username"));
+				user.setFullname(rs.getString("fullname"));
+				user.setPassword(rs.getString("password"));
+				user.setImages(rs.getString("images"));
+				user.setRoleid(rs.getInt("roleid"));
+				user.setPhone(rs.getString("phone"));
+				user.setCreatedate(rs.getDate("createdate"));
+				return user;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,7 +67,7 @@ public class UserDao extends DBConnectMySQL implements IUserDao {
 
 	@Override
 	public void insert(User user) {
-		String sql = "INSERT INTO users(username, email, fullname, images, password) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO users(username, email, fullname, images, password, phone, createdate) VALUES (?, ?, ?, ?, ?,?,?)";
 
 		try {
 			conn = super.getDatabaseConnection();
@@ -67,11 +77,57 @@ public class UserDao extends DBConnectMySQL implements IUserDao {
 			ps.setString(3, user.getFullname());
 			ps.setString(4, user.getImages());
 			ps.setString(5, user.getPassword());
+			ps.setString(6, user.getPhone());
+			ps.setDate(7, user.getCreatedate());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.print(e.getMessage());
 		}
+	}
+
+	@Override
+	public boolean checkExistEmail(String email) {
+		boolean duplicate = false;
+		String query = "select * from [user] where email = ?";
+		try {
+			conn = new DBConnectMySQL().getDatabaseConnection();
+			ps = conn.prepareStatement(query);
+			ps.setString(1, email);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				duplicate = true;
+			}
+			ps.close();
+			conn.close();
+		} catch (Exception ex) {
+		}
+		return duplicate;
+	}
+
+	@Override
+	public boolean checkExistUsername(String username) {
+		boolean duplicate = false;
+		String query = "select * from [User] where username = ?";
+		try {
+			conn = new DBConnectMySQL().getDatabaseConnection();
+			ps = conn.prepareStatement(query);
+			ps.setString(1, username);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				duplicate = true;
+			}
+			ps.close();
+			conn.close();
+		} catch (Exception ex) {
+		}
+		return duplicate;
+	}
+
+	@Override
+	public boolean checkExistPhone(String phone) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,54 +14,66 @@ bootstrap.min.css"
 <title>Đăng kí tài khoản</title>
 </head>
 <body>
-	<main class="container">
-		<header class="row">
-			<div class="col">
-				<div class="alert alert-success col">
-					<h1>Đăng ký tài khoản</h1>
-				</div>
-			</div>
-		</header>
-		<section class="row">
-			<div class="col-7">
-				<div class="row">
-					<div class="col">
+	<div class="container">
+		<div class="section">
+			<div class="row justify-content-center">
+				<div class="col-12 col-md-7">
+					<div class="register-form shadow-sm p-4">
+						<h2 class="text-center mb-4">Tạo tài khoản mới</h2>
 						<form action="/LapTrinhWeb/register" method="post">
-							<div class="form-group">
-								<label for="fullname">Họ và tên:</label> <input type="text"
-									id="fullname" name="fullname" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label for="username">Tên đăng nhập:</label> <input type="text"
-									id=" username" name="username" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label for="email">Email:</label> <input type="text" id="email"
-									name="email" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label for="password">Mật khẩu: </label> <input type="password"
-									id="password" name="password" class="form-control" />
-							</div>
+							<c:if test="${alert != null}">
+								<h3 class="alert alert-danger">${alert}</h3>
+							</c:if> 
+
 							<div class="mb-3">
-								<label for="avatar" class="form-label">Ảnh đại diện:</label>
-								<div class="d-flex align-items-center">
-									<!-- Khung chứa ảnh -->
-									<div class="border" id="image-preview"
-										style="width: 150px; height: 150px; background-color: #f0f0f0; margin-right: 10px;"></div>
-									<!-- Nút tải ảnh lên -->
-									<input type="file" class="form-control-file" id="avatar" name="images"
-										accept="image/*">
+								<label for="username" class="form-label">Tài khoản</label>
+								<div class="input-group">
+									<span class="input-group-text"> <i class="fa fa-user"></i>
+									</span> <input type="text" class="form-control" id="username"
+										name="username" placeholder="Nhập tài khoản" required>
 								</div>
 							</div>
-							<div class="form-group mt-3">
-								<button type="submit" class="btn btn-primary">Đăng ký</button>
+
+							<div class="mb-3">
+								<label for="fullname" class="form-label">Họ tên</label> <input
+									type="text" class="form-control" id="fullname" name="fullname"
+									placeholder="Nhập họ tên" required>
+							</div>
+
+							<div class="mb-3">
+								<label for="email" class="form-label">Email</label> <input
+									type="email" class="form-control" id="email" name="email"
+									placeholder="Nhập Email" required>
+							</div>
+
+							<div class="mb-3">
+								<label for="password" class="form-label">Mật khẩu</label> <input
+									type="password" class="form-control" id="password"
+									name="password" placeholder="Nhập mật khẩu" required>
+							</div>
+
+							<div class="mb-3">
+								<label for="confirmPassword" class="form-label">Nhập lại
+									mật khẩu</label> <input type="password" class="form-control"
+									id="confirmPassword" name="confirmPassword"
+									placeholder="Nhập lại mật khẩu" required>
+							</div>
+
+							<div class="d-grid">
+								<button type="submit" class="btn btn-primary">Tạo tài
+									khoản</button>
+							</div>
+
+							<div class="mt-3 text-center">
+								<p>
+									Nếu bạn đã có tài khoản? <a href="/LapTrinhWeb/views/login.jsp">Đăng nhập</a>
+								</p>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-		</section>
-	</main>
+		</div>
+	</div>
 </body>
 </html>

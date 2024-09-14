@@ -25,8 +25,8 @@ public class DBConnectMySQL {
 	}
 
 	public static void main(String[] args) {
-		UserDao userDao = new UserDao();
-//		User user = userDao.findByEmail("hoang@gmail.com");
+//		UserDao userDao = new UserDao();
+//		User user = userDao.findByUserName("test");
 //		System.out.println(user);
 
 //		List<User> users = userDao.findAll();
@@ -34,8 +34,8 @@ public class DBConnectMySQL {
 //			System.out.println(user);
 //		}
 		
-		User user = new User("huy","huy@mail","huy","","256");
-		userDao.insert(user);
+//		User user = new User("huy","huy@mail","huy","","256");
+//		userDao.insert(user);
 
 	}
 }
