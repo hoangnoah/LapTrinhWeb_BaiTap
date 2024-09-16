@@ -12,10 +12,21 @@ bootstrap.min.css"
 	rel="stylesheet">
 <title>Đăng nhập tài khoản</title>
 </head>
+<%
+String username = "";
+Cookie[] cookies = request.getCookies();
+if (cookies != null) {
+	for (Cookie cookie : cookies) {
+		if (cookie.getName().equals("username")) {
+	username = cookie.getValue();
+		}
+	}
+}
+%> 
 <body>
 	<header class="row">
 		<div class="col">
-			<div class="alert alert-primary col" align="center" >
+			<div class="alert alert-primary col" align="center">
 				<h1>Đăng nhập tài khoản</h1>
 			</div>
 		</div>
@@ -25,16 +36,34 @@ bootstrap.min.css"
 			<div class="col-12 col-md-5">
 				<form action="/LapTrinhWeb/login" method="post">
 					<div class="form-group">
-						<label for="username">Tên người dùng:</label> <input type="text" id="username"
-							name="username" class="form-control" />
+						<label for="username">Tên người dùng:</label> <input type="text"
+							id="username" name="username" class="form-control" value="<%= username %>"/>
 					</div>
 					<div class="form-group">
 						<label for="password">Mật khẩu: </label> <input type="password"
 							id="password" name="password" class="form-control" />
 					</div>
-					<div class="form-group mt-3" align="center">
-						<button type="submit" class="btn btn-primary">Đăng nhập</button>
-					</div>
+					<div class="form-group">
+						<div class="row mb-4">
+							<div class="col d-flex justify-content-center">
+								<!-- Checkbox -->
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox"
+										id="form2Example31" name="remember"/> <label
+										class="form-check-label" for="form2Example31" >
+										Remember me </label>
+								</div>
+							</div>
+
+							<div class="col">
+								<!-- Simple link -->
+								<a href="#!">Forgot password?</a>
+							</div>
+						</div>
+
+						<div class="form-group mt-3" align="center">
+							<button type="submit" class="btn btn-primary">Đăng nhập</button>
+						</div>
 				</form>
 			</div>
 		</div>

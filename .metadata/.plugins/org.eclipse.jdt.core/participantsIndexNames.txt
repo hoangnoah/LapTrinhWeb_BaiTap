@@ -1,0 +1,9 @@
+INDEX VERSION 1.134
+D:\Spring_tool_Workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2675515875.index
+\HelloWorld\src\main\java
+D:\Spring_tool_Workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\916559297.index
+\LTWEB\src\main\java
+D:\Spring_tool_Workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3346118813.index
+\ltweb_t4\src\main\java
+D:\Spring_tool_Workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2212549366.index
+\LapTrinhWeb\src\main\java
