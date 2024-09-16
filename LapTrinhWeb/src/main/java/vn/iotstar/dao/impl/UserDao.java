@@ -89,7 +89,7 @@ public class UserDao extends DBConnectMySQL implements IUserDao {
 	@Override
 	public boolean checkExistEmail(String email) {
 		boolean duplicate = false;
-		String query = "select * from [user] where email = ?";
+		String query = "select * from users where email = ?";
 		try {
 			conn = new DBConnectMySQL().getDatabaseConnection();
 			ps = conn.prepareStatement(query);
@@ -108,7 +108,7 @@ public class UserDao extends DBConnectMySQL implements IUserDao {
 	@Override
 	public boolean checkExistUsername(String username) {
 		boolean duplicate = false;
-		String query = "select * from [User] where username = ?";
+		String query = "select * from users where username = ?";
 		try {
 			conn = new DBConnectMySQL().getDatabaseConnection();
 			ps = conn.prepareStatement(query);
@@ -128,6 +128,31 @@ public class UserDao extends DBConnectMySQL implements IUserDao {
 	public boolean checkExistPhone(String phone) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void updatePassword(String username, String newPassword) {
+		String sql = "UPDATE users SET password = ? WHERE username = ?";
+
+		try {
+			conn = super.getDatabaseConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, newPassword);
+			ps.setString(2, username);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.print(e.getMessage());
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

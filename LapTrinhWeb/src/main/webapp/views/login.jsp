@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +24,7 @@ if (cookies != null) {
 		}
 	}
 }
-%> 
+%>
 <body>
 	<header class="row">
 		<div class="col">
@@ -35,9 +37,13 @@ if (cookies != null) {
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-5">
 				<form action="/LapTrinhWeb/login" method="post">
+					<c:if test="${alert !=null}">
+						<h3 class="alert alert-danger">${alert}</h3>
+					</c:if>
 					<div class="form-group">
 						<label for="username">Tên người dùng:</label> <input type="text"
-							id="username" name="username" class="form-control" value="<%= username %>"/>
+							id="username" name="username" class="form-control"
+							value="<%=username%>" />
 					</div>
 					<div class="form-group">
 						<label for="password">Mật khẩu: </label> <input type="password"
@@ -48,16 +54,16 @@ if (cookies != null) {
 							<div class="col d-flex justify-content-center">
 								<!-- Checkbox -->
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox"
-										id="form2Example31" name="remember"/> <label
-										class="form-check-label" for="form2Example31" >
-										Remember me </label>
+									<input class="form-check-input" type="checkbox" id="rememberme"
+										name="remember" /> <label class="form-check-label"
+										for="rememberme"> Remember me </label>
 								</div>
 							</div>
 
 							<div class="col">
-								<!-- Simple link -->
-								<a href="#!">Forgot password?</a>
+								<a
+									href="${pageContext.request.contextPath }/views/resetpassword.jsp"
+									class="text-decoration-none">Forgot password?</a>
 							</div>
 						</div>
 

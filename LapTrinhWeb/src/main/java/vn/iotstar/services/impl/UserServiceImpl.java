@@ -57,4 +57,13 @@ public class UserServiceImpl implements IUserService {
 		return true;
 	}
 
+	@Override
+	public boolean updatePassword(String username, String newPassword) {
+		if (!userDao.checkExistUsername(username)) {
+			return false;
+		}
+		userDao.updatePassword(username, newPassword);
+		return true;
+	}
+
 }

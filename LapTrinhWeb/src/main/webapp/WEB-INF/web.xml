@@ -59,4 +59,14 @@
     <servlet-name>LogoutController</servlet-name>
     <url-pattern>/LogoutController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ResetPasswordController</display-name>
+    <servlet-name>ResetPasswordController</servlet-name>
+    <servlet-class>vn.iotstar.controllers.ResetPasswordController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ResetPasswordController</servlet-name>
+    <url-pattern>/ResetPasswordController</url-pattern>
+  </servlet-mapping>
 </web-app>
