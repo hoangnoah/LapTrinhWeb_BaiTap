@@ -9,6 +9,7 @@ public interface IUserService {
 	User findByUserName(String username);
 	
 	void insert(User user);
+	public boolean updateUserInfo(User user);
 	public boolean updatePassword(String username, String newPassword);
 	public boolean register(String username,String email,String fullname,String images,String password,String phone);
 	boolean checkExistEmail(String email);

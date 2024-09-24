@@ -25,14 +25,14 @@ public class DBConnectMySQL {
 	}
 
 	public static void main(String[] args) {
-//		UserDao userDao = new UserDao();
+		UserDao userDao = new UserDao();
 //		User user = userDao.findByUserName("test");
 //		System.out.println(user);
 
-//		List<User> users = userDao.findAll();
-//		for (User user : users) {
-//			System.out.println(user);
-//		}
+		List<User> users = userDao.findAll();
+		for (User user : users) {
+			System.out.println(user);
+		}
 		
 //		User user = new User("huy","huy@mail","huy","","256");
 //		userDao.insert(user);

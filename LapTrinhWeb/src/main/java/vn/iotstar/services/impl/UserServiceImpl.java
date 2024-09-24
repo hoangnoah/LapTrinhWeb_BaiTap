@@ -66,4 +66,12 @@ public class UserServiceImpl implements IUserService {
 		return true;
 	}
 
+	@Override
+	public boolean updateUserInfo(User user) {
+		userDao.update(user);
+		return true;
+	}
+
+
+
 }

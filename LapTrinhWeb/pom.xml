@@ -40,6 +40,12 @@
 			<version>8.0.33</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.sitemesh</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -49,7 +55,7 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.13.0</version>
-					<configuration>
+					<configuration> 
 						<source>17</source>
 						<target>17</target>
 					</configuration>
