@@ -25,7 +25,8 @@
 			<td>${cate.categoryname }</td>
 			<td><c:if test="${cate.status == 1}">
 					<span>Hoạt động</span>
-				</c:if> <c:if test="${cate.status != 1}">
+				</c:if> 
+				<c:if test="${cate.status != 1}">
 					<span>Khóa</span>
 				</c:if>
 				</td>

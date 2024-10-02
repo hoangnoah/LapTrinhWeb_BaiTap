@@ -130,7 +130,7 @@ public class CategoryDao extends DBConnectMySQL implements ICategoryDao {
 				category.setCategoryid(rs.getInt("categoryid"));
 				category.setCategoryname(rs.getString("categoryname"));
 				category.setImages(rs.getString("images"));
-				category.setImages(rs.getString("images"));
+				category.setStatus(rs.getInt("status"));
 				categories.add(category);
 			}
 			conn.close();
