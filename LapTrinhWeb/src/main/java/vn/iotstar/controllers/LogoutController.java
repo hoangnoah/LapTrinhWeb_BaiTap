@@ -36,7 +36,7 @@ public class LogoutController extends HttpServlet {
             }
         }
 
-        response.sendRedirect(request.getContextPath()+ "/views/login.jsp");
+        response.sendRedirect(request.getContextPath()+ "/login");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

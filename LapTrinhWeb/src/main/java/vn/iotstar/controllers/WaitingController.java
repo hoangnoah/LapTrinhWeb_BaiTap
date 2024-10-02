@@ -25,13 +25,15 @@ public class WaitingController extends HttpServlet {
 		if (session != null && session.getAttribute("account") != null) {
 			User u = (User) session.getAttribute("account");
 			request.setAttribute("fullname", u.getFullname());
+			String imageUrl = "/uploads/" + u.getId() + u.getImages();
+			request.setAttribute("imageUrl", imageUrl);
+
 			if (u.getRoleid() == 2) {
 				response.sendRedirect(request.getContextPath() + "/admin/home");
 			} else if (u.getRoleid() == 3) {
 				response.sendRedirect(request.getContextPath() + "/manager/home");
 			} else {
-//				response.sendRedirect(request.getContextPath() + "/home");
-				request.getRequestDispatcher("/home").forward(request, response);
+				response.sendRedirect(request.getContextPath() + "/home");
 			}
 		} else {
 			response.sendRedirect(request.getContextPath() + "/login");

@@ -13,9 +13,9 @@ import vn.iotstar.models.User;
 import vn.iotstar.services.IUserService;
 import vn.iotstar.services.impl.UserServiceImpl;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.nio.file.Files;
 
 @WebServlet("/profile")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
@@ -44,47 +44,46 @@ public class ProfileController extends HttpServlet {
 		String alertMsg = "";
 
 		HttpSession session = request.getSession();
-		User u = (User) session.getAttribute("account");
+		if (session != null && session.getAttribute("account") != null) {
+			User user = (User) session.getAttribute("account");
 
-		// Lấy thông tin từ form
-//	    int userId = Integer.parseInt(request.getParameter("id"));
-		String fullname = request.getParameter("fullname");
-		String phone = request.getParameter("phone");
+			// Lấy thông tin từ form
+			String fullname = request.getParameter("fullname");
+			String phone = request.getParameter("phone");
 
-		// Xử lý upload file
-		Part filePart = request.getPart("images");
-		if (filePart == null || filePart.getSize() == 0) {
-			response.sendRedirect("views/profile.jsp?error=No file uploaded");
-			return;
-		}
-		String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-		String images = "uploads/" + fileName;
+			Part part = request.getPart("images");
+			if (part == null || part.getSize() == 0) {
+				response.sendRedirect("views/profile.jsp?error=No file uploaded");
+				return;
+			}
+			String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+			String images = fileName;
 
-		// Lưu file vào server
-		String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
-		File uploadDir = new File(uploadPath);
-		if (!uploadDir.exists())
-			uploadDir.mkdir();
+			// Lưu file vào server
+			String uploadPath = getServletContext().getRealPath("/uploads");
+			if(!Files.exists(Paths.get(uploadPath))) {
+				Files.createDirectory(Paths.get(uploadPath));
+			}
 
-		filePart.write(uploadPath + File.separator + fileName);
+			part.write(uploadPath + "/" + fileName);
 
-		User user = new User();
-		user.setId(u.getId());
-		user.setFullname(fullname);
-		user.setPhone(phone);
-		user.setImages(images);
+			user.setFullname(fullname);
+			user.setPhone(phone);
+			user.setImages(images);
 
-		IUserService service = new UserServiceImpl();
-		boolean updateSuccess = service.updateUserInfo(user);
+			IUserService service = new UserServiceImpl();
+			boolean updateSuccess = service.updateUserInfo(user);
 
-		if (updateSuccess) {
-			alertMsg = "Cập nhật thông tin thành công";
-			request.setAttribute("alert", alertMsg);
-			request.getRequestDispatcher("/views/profile.jsp").forward(request, response);
+			if (updateSuccess) {
+				alertMsg = "Cập nhật thông tin thành công";
+
+				request.setAttribute("user", user);
+				request.getRequestDispatcher("/views/profile.jsp").forward(request, response);
+			} else {
+				alertMsg = "Cập nhật thông tin thất bại";
+			}
 		} else {
-			alertMsg = "Cập nhật thông tin thất bại";
-			request.setAttribute("alert", alertMsg);
-			request.getRequestDispatcher("/views/profile.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/login");
 		}
 	}
 

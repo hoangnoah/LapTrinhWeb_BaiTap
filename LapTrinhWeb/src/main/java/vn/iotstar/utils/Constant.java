@@ -6,4 +6,7 @@ public class Constant {
 	
 	public static final String REGISTER = "/views/register.jsp";
 	public static final String RESETPASSWORD = "/views/resetpassword.jsp";
+	
+	public static final String UPLOAD_DIRECTORY = "D:\\uploads";
 }
+ 

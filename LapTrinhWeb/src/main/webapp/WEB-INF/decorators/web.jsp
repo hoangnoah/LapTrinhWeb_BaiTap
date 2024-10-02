@@ -18,6 +18,10 @@
 	href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
 	rel="stylesheet">
 
+<!-- Font awesome -->
+<link rel="stylesheet" href="${URL}/css/font-awesome.min.css"
+	type="text/css" />
+
 <!-- Css Styles -->
 <link rel="stylesheet" href="${URL}/css/bootstrap.min.css"
 	type="text/css">
@@ -33,6 +37,7 @@
 <link rel="stylesheet" href="${URL}/css/slicknav.min.css"
 	type="text/css">
 <link rel="stylesheet" href="${URL}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${URL}/css/main.css" />
 </head>
 
 <body>
@@ -64,5 +69,6 @@
 	<script src="${URL}/js/mixitup.min.js"></script>
 	<script src="${URL}/js/owl.carousel.min.js"></script>
 	<script src="${URL}/js/main.js"></script>
+	<script src="${URL}/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

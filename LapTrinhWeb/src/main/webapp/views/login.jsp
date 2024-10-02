@@ -44,7 +44,7 @@ if (cookies != null) {
 						<div class="login-wrap p-4 p-md-5">
 							<div class="d-flex">
 								<div class="w-100">
-									<h3 class="mb-4">Đăng nhập</h3>
+									<h3 class="mb-4">Login</h3>
 								</div>
 								<div class="w-100">
 									<p class="social-media d-flex justify-content-end">
@@ -61,14 +61,14 @@ if (cookies != null) {
 									<h3 class="alert alert-danger">${alert}</h3>
 								</c:if>
 								<div class="form-group mb-3">
-									<label class="label" for="username">Tên người dùng</label> <input
+									<label class="label" for="username">User Name</label> <input
 										id="username" name="username" type="text" class="form-control"
-										value="<%=username%>" placeholder="Tên người dùng" required>
+										value="<%=username%>" placeholder="User name" required>
 								</div>
 								<div class="form-group mb-3">
-									<label class="label" for="password">Mật khẩu</label> <input
+									<label class="label" for="password">Password</label> <input
 										type="password" id="password" name="password"
-										class="form-control" placeholder="Mật khẩu" required>
+										class="form-control" placeholder="Password" required>
 								</div>
 								<!-- <div class="form-group d-md-flex">
 									<div class="w-50 text-left">
